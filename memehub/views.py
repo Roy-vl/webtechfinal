@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 def post_list(request):
     memes = Meme.objects.order_by('published_date')
     print (memes)
-    return render(request, 'memehub/base.html', {'todos': todos} )
+    return render(request, 'memehub/index.html', {'todos': todos} )
 
 
 def post_new(request):
@@ -18,7 +18,7 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect('base.html' )
+            return redirect('memehub/index.html' )
     else:
         form = PostForm()
     return render(request, 'memehub/post_edit.html', {'form': form})
@@ -29,9 +29,7 @@ def post_remove(request, pk):
     post.delete()
     return redirect('post_list')
 
-def post_detail(request, pk):
-    post = get_object_or_404(Meme, pk=pk)
-    return render(request, 'memehub/post_detail.html', {'post': post})
+
 
 def post_edit(request, pk):
     post = get_object_or_404(Meme, pk=pk)
