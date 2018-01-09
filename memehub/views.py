@@ -6,6 +6,10 @@ from .forms import PostForm
 from django.shortcuts import redirect
 
 
+# Create your views here.
+def index(request):
+    return render(request, 'memehub/index.html')
+
 def post_list(request):
     memes = Meme.objects.order_by('published_date')
     print (memes)
