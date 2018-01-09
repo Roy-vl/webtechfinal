@@ -20,18 +20,17 @@ def new_meme(request):
     return render(request, 'memehub/new_meme.html', {'form': form})
 
 def judge(request):
-    profile = get_object_or_404(Profile, pk=1)
+    for profiles in Profile.objects.all():
+        if profiles.user == request.user:
+            profile = profiles
+            break
+    seenmemes = profile.seenMemes.all()
     for meme in Meme.objects.all():
-        for profiles in Profile.objects.all():
-            if profiles.user == request.user:
-                profile = profiles
-        seenmemes = profile.seenMemes.all()
-        for seenId in seenmemes:
-            if meme.id != seenId.pk:
-                Profile.seenMemes.append(meme.id)
-                Profile.save()
-                return render(request, 'judge.html', { 'meme': meme })
-        return render(request, 'judge.html', { 'meme': meme })
+        if meme not in seenmemes:
+            profile.seenMemes.add(meme)
+            profile.save()
+            return render(request, 'judge.html', { 'meme': meme })
+    return render(request, 'outoffmemes.html', { 'meme': meme })
 	
 	
 def post_remove(request, pk):
