@@ -12,7 +12,7 @@ from django.dispatch import receiver
     CATEGORIES = (
         (CUTE, 'Cute'),
         (FUNNY, 'Funny'),
-        (DANK, 'Dank),
+        (DANK, 'Dank'),
         (ONLYSMARTPPL, 'Only Smart People Will Understand'),
     )
 
