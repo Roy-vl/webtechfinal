@@ -1,40 +1,28 @@
-from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
-from .models import Meme
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate as auth_authenticate
+from django.contrib.auth.forms import UserCreationForm
 
-
+# Create your views here.
 def index(request):
     return render(request, 'memehub/index.html')
 
+def login(request):
+    return render(request, 'registration/login.html')
 
-def post_new(request):
-    if request.method == "POST":
-        form = PostForm(request.POST)
+def logout(request):
+    return render(request, 'registration/logged_out.html')
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('memehub/index.html' )
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            person = auth_authenticate(username=username, password=raw_password)
+            auth_login(request, person)
+            return redirect('index')
     else:
-        form = PostForm()
-    return render(request, 'memehub/post_edit.html', {'form': form})
-
-
-def post_remove(request, pk):
-    post = get_object_or_404(Meme, pk=pk)
-    post.delete()
-    return redirect('post_list')
-
-
-
-def post_edit(request, pk):
-    post = get_object_or_404(Meme, pk=pk)
-    if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('base.html' )
-    else:
-        form = PostForm(instance=post)
-    return render(request, 'post_edit.html', {'form': form})
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
