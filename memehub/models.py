@@ -6,55 +6,42 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-
 class Meme(models.Model):
-    CUTE = 'CU',
-    FUNNY = 'FU',
-    DANK = 'DA',
-    ONLYSMARTPPL = 'OS',
     CATEGORIES = [
-        (CUTE, 'Cute'),
-        (FUNNY, 'Funny'),
-        (DANK, 'Dank'),
-        (ONLYSMARTPPL, 'Only Smart People Will Understand'),
+        ('CU', 'Cute'),
+        ('FU', 'Funny'),
+        ('DA', 'Dank'),
+        ('OS', 'Only Smart People Will Understand'),
     ]
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, blank=True)
     image = models.ImageField(upload_to = './memes')
-    published_date = models.DateTimeField(blank=True, null=True)
     categories = models.CharField( default = 'DA', max_length = 50, choices = CATEGORIES)
 
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
-
+    class Meta: 
+        ordering = ['title']
+    
     def __str__(self):
         return self.title
 
 class Profile(models.Model):
-    CUTE = 'CU',
-    FUNNY = 'FU',
-    DANK = 'DA',
-    ONLYSMARTPPL = 'OS',
     CATEGORIES = [
-        (CUTE, 'Cute'),
-        (FUNNY, 'Funny'),
-        (DANK, 'Dank'),
-        (ONLYSMARTPPL, 'Only Smart People Will Understand'),
+        ('CU', 'Cute'),
+        ('FU', 'Funny'),
+        ('DA', 'Dank'),
+        ('OS', 'Only Smart People Will Understand'),
     ]
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     avater = models.ImageField()
     fb_link = models.URLField()
+    seenMemes = models.ManyToManyField('Meme')
+    location = models.CharField(max_length=30, blank=True)
+    birth_date = models.DateField(max_length = 2, null=True, blank=True)
     top_3_cat = models.CharField(
 	    max_length = 50,
 	    choices = CATEGORIES,
 	    default = 'DA',
     )
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+	
+    def __str__(self):
+        return self.user.username
+		

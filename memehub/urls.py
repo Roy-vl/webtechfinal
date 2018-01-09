@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'),
+    url(r'^meme/new/$', views.new_meme, name='newmeme'),
+    url(r'^judge/$', views.judge, name='judge'),
 ]

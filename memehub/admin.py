@@ -1,3 +1,5 @@
 from django.contrib import admin
-
-# Register your models here.
+from memehub import models
+ 
+admin.site.register(models.Meme) #Register the model with the admin
+admin.site.register(models.Profile) #Register the model with the admin
