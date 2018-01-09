@@ -1,7 +1,6 @@
 from django import forms
 
-from .models import Post
-from .models import Todo
+from .models import Meme
 class PostForm(forms.ModelForm):
 
     class Meta:

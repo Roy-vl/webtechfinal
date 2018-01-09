@@ -1,15 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from .models import Post
 from .models import Meme
-from .forms import PostForm
 from django.shortcuts import redirect
 
 
-def post_list(request):
-    memes = Meme.objects.order_by('published_date')
-    print (memes)
-    return render(request, 'memehub/index.html', {'todos': todos} )
+def index(request):
+    return render(request, 'memehub/index.html')
 
 
 def post_new(request):
