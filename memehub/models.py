@@ -17,6 +17,9 @@ class Meme(models.Model):
     image = models.ImageField(upload_to = './memes')
     categories = models.CharField( default = 'DA', max_length = 50, choices = CATEGORIES)
 
+    class Meta: 
+        ordering = ['title']
+    
     def __str__(self):
         return self.title
 
@@ -27,9 +30,10 @@ class Profile(models.Model):
         ('DA', 'Dank'),
         ('OS', 'Only Smart People Will Understand'),
     ]
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     avater = models.ImageField()
     fb_link = models.URLField()
+    seenMemes = models.ManyToManyField(Meme)
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(max_length = 2, null=True, blank=True)
     top_3_cat = models.CharField(
@@ -39,5 +43,5 @@ class Profile(models.Model):
     )
 	
     def __str__(self):
-        return self.title 
-
+        return self.user.username
+		
