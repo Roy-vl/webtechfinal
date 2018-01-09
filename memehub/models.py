@@ -25,7 +25,7 @@ class Profile(models.Model):
     fb_link = models.URLField()
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-    top_3_cat = models_Charfield(
+    top_3_cat = models.Charfield(
     choiches = TEST
     )
 
