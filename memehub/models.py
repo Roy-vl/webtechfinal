@@ -5,16 +5,16 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-    CUTE = 'CU'
-    FUNNY = 'FU'
-    DANK = 'DA'
-    ONLYSMARTPPL = 'OS'
-    CATEGORIES = (
-        (CUTE, 'Cute'),
-        (FUNNY, 'Funny'),
-        (DANK, 'Dank'),
-        (ONLYSMARTPPL, 'Only Smart People Will Understand'),
-    )
+CUTE = 'CU'
+FUNNY = 'FU'
+DANK = 'DA'
+ONLYSMARTPPL = 'OS'
+CATEGORIES = (
+    (CUTE, 'Cute'),
+    (FUNNY, 'Funny'),
+    (DANK, 'Dank'),
+    (ONLYSMARTPPL, 'Only Smart People Will Understand'),
+)
 
 class Meme(models.Model):
     title = models.CharField(max_length=100)
@@ -36,7 +36,7 @@ class Profile(models.Model):
     fb_link = models.URLField()
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(max_length = 2, null=True, blank=True)
-    top_3_cat = models_Charfield(default = 'DA', max_length = 50,
+    top_3_cat = models.CharField(default = 'DA', max_length = 50,
     choiches = CATEGORIES
     )
 
