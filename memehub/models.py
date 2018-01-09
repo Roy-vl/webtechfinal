@@ -6,29 +6,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from pygments.lexers import get_lexer_by_name
-from pygments.formatters.html import HtmlFormatter
-from pygments import highlight
-
-class Post(models.Model):
-    author = models.ForeignKey('auth.User')
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(
-            default=timezone.now)
-    published_date = models.DateTimeField(
-            blank=True, null=True)
-
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
-
-    def __str__(self):
-        return self.title
-
-    def descr(self):
-        return self.text
-
 class Meme(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField()
@@ -62,13 +39,3 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
-def save(self, *args, **kwargs):
-    """
-    Use the `pygments` library to create a highlighted HTML
-    representation of the code snippet.
-    """
-    lexer = get_lexer_by_name(self.language)
-    options = self.title and {'title': self.title} or {}
-    formatter = HtmlFormatter(style=self.style, linenos=linenos,
-                              full=True, **options)
-    super(Snippet, self).save(*args, **kwargs)
