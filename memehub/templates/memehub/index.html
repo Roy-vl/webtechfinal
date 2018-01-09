@@ -1,4 +1,10 @@
 {% extends 'memehub/base.html' %}
 {% block content %}
   <p>this is from index</p>
+  {% if user.is_authenticated %}
+  <a href="{% url 'logout' %}">logout</a>
+  {% else %}
+  <a href="{% url 'login' %}">login</a>
+  {% endif %}
+  <a href="{% url 'register' %}">register</a>
 {% endblock %}
