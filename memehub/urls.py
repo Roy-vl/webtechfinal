@@ -1,6 +1,8 @@
 from django.conf.urls import url, include
 from django.urls import path
 from . import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -10,4 +12,6 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^judge/like/(?P<pk>\d+)/$', views.like, name='like'),
     url(r'^dislike/(?P<pk>\d+)/$', views.dislike, name='dislike'),
+    url(r'^accounts/profile$', views.update_profile, name='profile'),
 ]
+

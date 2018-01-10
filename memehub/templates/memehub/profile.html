@@ -1,0 +1,15 @@
+{% extends 'memehub/base.html' %}
+{% block content %}
+<h2>{{ user.get_full_name }}</h2>
+<ul>
+  <li>Username: {{ user.username }}</li>
+  <li>Avatar: <img src="{{ user.profile.avater.url }}" style="width: 200px; height: 200px; border-radius: 25%; border: 1px solid black" class="rounded-circle"></li>
+  <li>Facebook: <a href="{{ user.profile.fb_link }}">{{ user.profile.fb_link }}</a></li>
+</ul>
+<hr>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ profile_form.as_p }}
+  <button type="submit">Save changes</button>
+</form>
+{% endblock %}

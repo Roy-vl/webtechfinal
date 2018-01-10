@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Max
 from django.utils import timezone
 from .models import Meme, Profile, Like
-from .forms import MemeForm 
+from .forms import MemeForm, ProfileForm
+from django.db import transaction
 
 # Create your views here.
 def index(request):
@@ -33,7 +34,21 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 
-@login_required(login_url='index')
+@login_required
+@transaction.atomic
+def update_profile(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(data=request.POST, files=request.FILES, instance=request.user.profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('profile')
+    else:
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'memehub/profile.html', {
+        'profile_form': profile_form
+    })
+
+@login_required(login_url='register/login/')
 def judge(request):
     #find the profile belonging to the current user
     for profiles in Profile.objects.all():
@@ -150,3 +165,4 @@ def matches(request):
     if potentials is 0:
         return render(request, 'memehub/nomatches.html')
     return render(request, 'memehub/matches.html', { 'matches': potentials })
+
