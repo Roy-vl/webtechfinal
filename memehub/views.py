@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import Meme, Profile
 from django.shortcuts import redirect
 from .forms import MemeForm 
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'memehub/index.html')
@@ -19,6 +20,7 @@ def new_meme(request):
         form = MemeForm()
     return render(request, 'memehub/new_meme.html', {'form': form})
 
+@login_required(login_url='register/login/')
 def judge(request):
     for profiles in Profile.objects.all():
         if profiles.user == request.user:
@@ -29,8 +31,8 @@ def judge(request):
         if meme not in seenmemes:
             profile.seenMemes.add(meme)
             profile.save()
-            return render(request, 'judge.html', { 'meme': meme })
-    return render(request, 'outoffmemes.html', { 'meme': meme })
+            return render(request, 'memehub/judge.html', { 'meme': meme })
+    return render(request, 'memehub/outoffmemes.html', { 'meme': meme })
 	
 	
 def post_remove(request, pk):

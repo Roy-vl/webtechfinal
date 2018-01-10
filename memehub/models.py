@@ -14,7 +14,7 @@ class Meme(models.Model):
         ('OS', 'Only Smart People Will Understand'),
     ]
     title = models.CharField(max_length=100, blank=True)
-    image = models.ImageField(upload_to = './memes')
+    image = models.ImageField(upload_to = 'memes')
     categories = models.CharField( default = 'DA', max_length = 50, choices = CATEGORIES)
 
     class Meta: 
@@ -34,8 +34,6 @@ class Profile(models.Model):
     avater = models.ImageField()
     fb_link = models.URLField()
     seenMemes = models.ManyToManyField('Meme')
-    location = models.CharField(max_length=30, blank=True)
-    birth_date = models.DateField(max_length = 2, null=True, blank=True)
     top_3_cat = models.CharField(
 	    max_length = 50,
 	    choices = CATEGORIES,
