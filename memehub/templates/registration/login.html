@@ -1,29 +1,43 @@
-{% extends 'memehub/base.html' %}
+{% extends 'memehub/base2.html' %}
 {% load staticfiles %}
   {% block content %}
+  {% if user.is_authenticated %}
+  <p>You are already logged in!</p>
+  <script type="text/javascript">
+    function leave() {
+      window.location = "{% url 'index' %}";
+    }
+    setTimeout("leave()", 2000);
+  </script>
+    {% else %}
     <div class="container">
       <div class="row">
         <div class="Absolute-Center is-Responsive">
-          <div id="logo-container">
-          <img class="img-fluid movie-poster" src="{% static 'images/Memehub.png' %}">
-          </div>
           <div class="col-sm-12 col-md-10 col-md-offset-1">
             <form method="post">
               {% csrf_token %}
               <div class="form-group input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
                 <input class="form-control" type="text" name='username' placeholder="username"/>
               </div>
               <div class="form-group input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
                 <input class="form-control" type="password" name='password' placeholder="password"/>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-def btn-block">Login</button>
               </div>
+
+              {% if form.non_field_errors %}
+                  {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                  {% endfor %}
+              {% endif %}
             </form>
+            <p>Don't have an account? <br> Register <a href="{% url 'register' %}">here</a></p>
           </div>
         </div>
       </div>
     </div>
+    {% endif %}
 {% endblock %}

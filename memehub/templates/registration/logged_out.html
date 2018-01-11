@@ -1,10 +1,10 @@
-{% extends 'memehub/base.html' %}
+{% extends 'memehub/base2.html' %}
 {% block content %}
   <p>you logged out</p>
   <script type="text/javascript">
     function leave() {
       window.location = "{% url 'index' %}";
     }
-    setTimeout("leave()", 4000);
+    setTimeout("leave()", 3000);
   </script>
 {% endblock %}
