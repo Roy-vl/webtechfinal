@@ -1,19 +1,15 @@
-{% extends 'memehub/base2.html' %}
+{% extends 'memehub/base.html' %}
 {% block content %}
-  {% if user.is_authenticated %}
-  <p>Why would you register a new account if you already have one?</p>
-  <script type="text/javascript">
-    function leave() {
-      window.location = "{% url 'index' %}";
-    }
-    setTimeout("leave()", 2000);
-  </script>
-  {% else %}
-  <h2>Sign up</h2>
+{% load staticfiles %}
+<link rel="stylesheet" href= "{% static 'css/registration.css' %}">
+  <h1>Sign up please</h1>
+  <body>
+  <div class = 'profileheader'>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Sign up</button>
+    <button type="submit" class = 'sign'>Sign up please</button>
   </form>
-  {% endif %}
+</div>
+</body>
 {% endblock %}
