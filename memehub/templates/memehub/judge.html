@@ -14,7 +14,7 @@
 						</br>
 
             <button type="button" onclick="disliked()" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-times fa-2x"></i></i></button>
-            <button type="button" class="btn btn-info btn-circle btn-lg"><i class="icon-meh fa-2x"></i></button>
+            <button type="button" onclick="meh()" class="btn btn-info btn-circle btn-lg"><i class="fa fa-meh-o fa-2x"></i></button>
             <button type="button" onclick="liked()" class="btn btn-success btn-circle btn-xl"><i class="fa fa-heart fa-2x"></i></button>
 
 					</div>
@@ -27,8 +27,14 @@
 			<div class="container-fluid d-none d-lg-block statuslike" id="droppable2">
             </div>
 		</div>
-    <form class="hide" action="like/{{ meme.pk }}/">
+    <form class="hide" action="dislike/{{ meme.pk }}/">
         <button type="submit" class="dislikebuttonhack">
+    </form>
+	<form class="hide" action="meh/{{ meme.pk }}/">
+        <button type="submit" class="mehbuttonhack">
+    </form>
+	<form class="hide" action="like/{{ meme.pk }}/">
+        <button type="submit" class="likebuttonhack">
     </form>
 
 	<!-- judge scripts -->
