@@ -1,13 +1,27 @@
 {% extends 'memehub/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<div class="matchpage">
-    {% for match in matches %}
-		{{ match.user }}
-	{% endfor %}
-</div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
- 
+<link rel="stylesheet" href= "{% static 'css/registration.css' %}">
+<h1 class = "title">Your Matches</h1>
+<hr>
+ <ul id="sortable" class="list-unstyled">
+   {% for match in matches %}
+   <li class="ui-state-default profilelist">
+     <div class = "profile">
+       <p class = 'profileheader'>
+         {{ match.user.username }}
+         <a href="{{ match.fb_link }}">
+           <i class=" fbbutton fa fa-facebook" aria-hidden="true"></i>
+         </a>
+       </p>
+       <p>
+         <img src="{{ match.avater.url }}" style="width: 200px; height: 200px; border-radius: 25%; border: 1px solid black" class="rounded-circle">
+       </p>
+     </div>
+   </li>
+   {% endfor %}
+ </ul>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 {% endblock %}

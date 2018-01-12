@@ -1,19 +1,17 @@
-* {
-      background-color: #1b1b1b;
-      color: #FF9900;
-      font-family: arial;
-      font-weight: bold !important;
-}
 
 body{
     background-color: #000000 !important ;
     font-family: sans-serif;
+    background-color: #1b1b1b;
+    color: #FF9900;
+    font-family: arial;
+    font-weight: bold !important;
 }
 
 button {
 background: none !important;
  border: none;
- border-radius: 20px;
+ border-radius: 5px;
  padding: 2px ;
  font: inherit;
  cursor: pointer;
@@ -23,8 +21,8 @@ background: none !important;
 
 button:hover {
   color: white !important;
-  background-color: #242424;
-  padding: 5px;
+  background-color: #343a40 !important;
+  padding: 2px;
 }
 
 h1 {
@@ -48,14 +46,7 @@ li{
 }
 
 ul{
-  border: 5px solid #242424;
-  border-radius: 10px;
-  text-align: center;
-  background-color: #343A40 !important;
-  font-size: 40;
-  font-weight: 700;
-  width: auto;
-  display: inline-block;
+
 }
 
 
@@ -108,9 +99,10 @@ ul{
 }
 
 .profileheader{
-  padding: 1;
-  background-color: inherit !important;
-  font-size: 40;
+  color: #FF9900;
+  padding: 2px;
+  background-color: #242424 !important;
+  font-size: 40 !important;
   font-weight: 700;
   border-bottom: 5px solid #242424;
   padding-bottom: 5px;
@@ -126,10 +118,23 @@ ul{
   width: auto;
   display: inline-block;
 }
+.registerinfo {
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 0px !important;
 
+}
+
+.form{
+  background-color: #343A40;
+}
 .sign {
   background-color: #ff9900 !important;
   color: black ;
+  font-size: 20px;
 }
 
 .title{
@@ -137,4 +142,27 @@ ul{
 }
 #sortable{
     background-color: #1b1b1b !important;
+    border: 5px solid #242424;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #343A40 !important;
+    font-size: 40;
+    font-weight: 700;
+    width: auto;
+    display: inline-block;
+}
+
+#id_username, #id_password1, #id_password2 {
+  text-align: center;
+   background: none;
+   border: 3px solid #242424;
+   border-radius: 5px;
+   background-color: grey;
+}
+
+#id_username:hover, #id_password1:hover, #id_password2:hover {
+   background: none;
+   border: 3px solid #242424;
+   border-radius: 5px;
+   background-color: white;
 }

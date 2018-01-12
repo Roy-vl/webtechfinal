@@ -45,7 +45,7 @@ $(function() {
       },
       out: function(event, ui) {
         $(".btn-danger").children().removeClass("fa-spin");
-        $(".memepage").css("background-color", "rgb(255, 255, 255)");
+        $(".memepage").css("background-color", "rgb(0, 0, 0)");
       }
     });
 
@@ -61,7 +61,7 @@ $(function() {
       },
       out: function(event, ui) {
         $(".btn-success").children().removeClass("fa-spin");
-        $(".memepage").css("background-color", "rgb(255, 255, 255)");
+        $(".memepage").css("background-color", "rgb(0, 0, 0)");
       }
     });
 
@@ -78,7 +78,7 @@ $(function() {
       },
       out: function(event, ui) {
         $(".btn-success").children().removeClass("fa-spin");
-        $(".memepage").css("background-color", "rgb(255, 255, 255)");
+        $(".memepage").css("background-color", "rgb(0, 0, 0)");
       }
     });
 
@@ -94,7 +94,7 @@ $(function() {
       },
       out: function(event, ui) {
         $(".btn-danger").children().removeClass("fa-spin");
-        $(".memepage").css("background-color", "rgb(255, 255, 255)");
+        $(".memepage").css("background-color", "rgb(0, 0, 0)");
       }
     });
   });

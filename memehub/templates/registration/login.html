@@ -1,6 +1,7 @@
 {% extends 'memehub/base2.html' %}
+{% block content %}
 {% load staticfiles %}
-  {% block content %}
+<link rel="stylesheet" href= "{% static 'css/registration.css' %}">
   {% if user.is_authenticated %}
   <p>You are already logged in!</p>
   <script type="text/javascript">
@@ -13,19 +14,19 @@
     <div class="container">
       <div class="row">
         <div class="Absolute-Center is-Responsive">
-          <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <form method="post">
+          <div class="col-sm-12 col-md-10 col-md-offset-1"  id = 'sortable'>
+            <form method="post" class = 'profile'>
               {% csrf_token %}
               <div class="form-group input-group">
-                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <span class="input-group-addon form"><i class="fa fa-user" aria-hidden="true"></i></span>
                 <input class="form-control" type="text" name='username' placeholder="username"/>
               </div>
               <div class="form-group input-group">
-                <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                <span class="input-group-addon form"><i class="fa fa-lock" aria-hidden="true"></i></span>
                 <input class="form-control" type="password" name='password' placeholder="password"/>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-def btn-block">Login</button>
+                <button type="submit" class="sign btn-def btn-block">Login</button>
               </div>
 
               {% if form.non_field_errors %}
@@ -34,7 +35,7 @@
                   {% endfor %}
               {% endif %}
             </form>
-            <p>Don't have an account? <br> Register <a href="{% url 'register' %}">here</a></p>
+            <p class = 'registerinfo'>Don't have an account? <br> Register <a href="{% url 'register' %}">here</a></p>
           </div>
         </div>
       </div>

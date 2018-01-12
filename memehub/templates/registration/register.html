@@ -1,15 +1,56 @@
-{% extends 'memehub/base.html' %}
-{% block content %}
+{% extends 'memehub/base2.html' %}
 {% load staticfiles %}
+{% block content %}
 <link rel="stylesheet" href= "{% static 'css/registration.css' %}">
-  <h1>Sign up please</h1>
-  <body>
+{% if user.is_authenticated %}
+<p>Why would you register a new account if you already have one?</p>
+<script type="text/javascript">
+  function leave() {
+    window.location = "{% url 'index' %}";
+  }
+  setTimeout("leave()", 2000);
+</script>
+{% else %}
+<h1>Registration</h1>
+<form method="post">
   <div class = 'profileheader'>
-  <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class = 'sign'>Sign up please</button>
-  </form>
-</div>
-</body>
+    <p class = 'form'>  Username:  </p>
+    <p>{{form.username}}</p>
+    <div class = 'registerinfo'>
+      <ul>
+        <li> 1-150 Characters </li>
+        <li> Only use digits, letters or @/./+/-/_ </li>
+      </ul>
+    </div>
+    <p class = 'form'>  Password:  </p>
+    <p>{{form.password1}}</p>
+    <div class = 'registerinfo'>
+      <ul>
+        <li> Your password must use atleast 8 characters </li>
+        <li> Your password must use at non-numerical symbol </li>
+        <li> Your password can not be a commonly-used password </li>
+        <li> Your password can not be too similar to your other personal information </li>
+      </ul>
+    </div>
+    <p class = 'form'> Please fill in your password again: </p>
+    <p>{{form.password2}}</p>
+  </div>
+  {% if form.errors %}
+  <p class="form"> Please fix the following errors: </p>
+    <ul class = 'registerinfo'>
+      {% for field in form %}
+        {% if field.errors %}
+          {% for error in field.errors %}
+            <li>{{ error|escape }}</li>
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div>
+    <button type="submit" class = 'sign'>Sign up</button>
+  </div>
+</form>
+{% endif %}
 {% endblock %}
