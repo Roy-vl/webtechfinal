@@ -1,0 +1,15 @@
+{% extends 'memehub/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href= "{% static 'css/registration.css' %}">
+<div class = "profile"> <p class = 'profileheader'>  {{ user.username }}  <a href=fblink > </p>
+
+<img src="{{ user.profile.avater.url }}" style="width: 200px; height: 200px; border-radius: 25%; border: 1px solid black" class="rounded-circle">  </p>
+<div class= 'info'>
+  <a href="{{ user.profile.fb_link }}" aria-hidden="true">  <i class=" fbbutton fa fa-facebook" aria-hidden="true"></i> {{ user.profile.fb_link }} </a>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ profile_form.as_p }}
+  <button type="submit">Save changes</button>
+</form>
+{% endblock %}

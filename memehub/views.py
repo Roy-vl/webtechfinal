@@ -12,6 +12,10 @@ from django.db import transaction
 
 # Create your views here.
 def index(request):
+    if request.user.is_authenticated is True:
+        return redirect('judge')
+    else:
+        return redirect('login')
     return render(request, 'memehub/index.html')
 
 def login(request):
@@ -48,7 +52,7 @@ def update_profile(request):
         'profile_form': profile_form
     })
 
-@login_required(login_url='register/login/')
+@login_required
 def judge(request):
     #find the profile belonging to the current user
     for profiles in Profile.objects.all():
@@ -64,7 +68,7 @@ def judge(request):
     #if there is no new one go to the outofmemes page
     return render(request, 'memehub/outoffmemes.html', { 'meme': meme })
 
-@login_required(login_url='index')
+@login_required
 def like(request, pk):
     #find the profile belonging to the current user
     for profiles in Profile.objects.all():
@@ -76,13 +80,23 @@ def like(request, pk):
     profile.seenMemes.add(meme)
     profile.save()
     #add one to the like factor
+    try:
+        like = Like.objects.get(profile=profile, category=meme.categories)
+        likability = like.amount
+    except Like.DoesNotExist:
+        Like.objects.create(profile=profile, category=meme.categories, amount = 0)
+        likability = 1
     like = Like.objects.get(profile=profile, category=meme.categories)
     count = like.amount
     count += 1
     like.amount = count
     like.save()
     #set the new most liked cat if the new one is higher
-    if count > Like.objects.get(profile=profile, category=profile.top_cat).amount:
+    try:
+        likability = Like.objects.get(profile=profile, category=profile.top_cat).amount
+    except Like.DoesNotExist:
+        likability = 0
+    if count > likability:
         profile.top_cat = like.category
         profile.save()
     #go through all memes until one is not in the seen list
@@ -95,7 +109,7 @@ def like(request, pk):
     return render(request, 'memehub/outoffmemes.html', { 'meme': meme })
 
 
-@login_required(login_url='index')
+@login_required
 def meh(request, pk):
     #find the profile belonging to the current user
     for profiles in Profile.objects.all():
@@ -116,7 +130,7 @@ def meh(request, pk):
     return render(request, 'memehub/outoffmemes.html', { 'meme': meme })
 
 
-@login_required(login_url='index')
+@login_required
 def dislike(request, pk):
     #find the profile belonging to the current user
     for profiles in Profile.objects.all():
@@ -128,12 +142,22 @@ def dislike(request, pk):
     profile.seenMemes.add(meme)
     profile.save()
     #substract three from the like factor
+    try:
+        like = Like.objects.get(profile=profile, category=meme.categories)
+        likability = like.amount
+    except Like.DoesNotExist:
+        Like.objects.create(profile=profile, category=meme.categories, amount = 0)
+        likability = 1
     like = Like.objects.get(profile=profile, category=meme.categories)
     count = like.amount
     count -= 3
     like.amount = count
     like.save()
     #set the new most liked cat if the disliked was the current best
+    try:
+        best = Like.objects.get(profile=profile, category=profile.top_cat)
+    except Like.DoesNotExist:
+        best = Like.objects.create(profile=profile, category=profile.top_cat, amount = 0)
     if like is Like.objects.get(profile=profile, category=profile.top_cat):
         for likes in Like.objects.get(profile=profile):
             if likes.amount > count:
@@ -149,7 +173,7 @@ def dislike(request, pk):
     return render(request, 'memehub/outoffmemes.html', { 'meme': meme })
 
 
-@login_required(login_url='index')
+@login_required
 def matches(request):
     potentials = []
     #find the profile belonging to the current user
@@ -157,12 +181,12 @@ def matches(request):
         if profiles.user == request.user:
             profile = profiles
             break
+    pcat = profile.top_cat
     for potmatch in Profile.objects.all():
-        if potmatch.top_cat is profile.top_cat:
+        potcat = potmatch.top_cat
+        if pcat == potcat and potmatch != profile:
             potentials.append(potmatch)
-        if potentials is 5:
-            return render(request, 'memehub/matches.html', { 'matches': potentials })
-    if potentials is 0:
+    if not potentials:
         return render(request, 'memehub/nomatches.html')
     return render(request, 'memehub/matches.html', { 'matches': potentials })
 
