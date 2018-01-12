@@ -1,7 +1,9 @@
-
+.hide{
+  display: none;
+}
 .memecontent{
   max-width: 100%;
-  max-height: 100%;
+  max-height: 600px;
   z-index: +1;
 }
 
@@ -11,36 +13,66 @@
 
 .memepage{
   overflow-x: hidden;
-  overflow-y: hidden;
+ overflow-y: hidden;
+  background-color: rgb(255, 255, 255);
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+
 }
 
 .status{
 max-width: 100%;
 bottom: 0%;
-background-color: rgb(19, 42, 235);
+
+opacity: 100%
+z-index: -1;
 }
 
+.stampD{
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  z-index: +1;
+  opacity: 0;
+  transition: opacity 2s ease-out;
+}
+
+.stampL{
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  z-index: +1;
+  opacity: 0;
+  transition: opacity 2s ease-out;
+}
 
 .mobilestatuslike{
-  background-color: rgb(16, 251, 13);
+
   position: fixed;
-  z-index: +1;
-  left: 0%;
-  top: 0%;
+  z-index: -1;
   bottom: 0%;
-  right: 0%;
-  margin-right: 65%;
+  top: 0%;
+  right: 60%;
+  opacity: 100%
+
 }
 
 .mobilestatusdislike{
-  background-color: rgb(251, 34, 13);
+
   position: fixed;
-  z-index: +1;
-  left: 0%;
-  top: 0%;
+  z-index: -1;
   bottom: 0%;
-  right: 0%;
-  margin-left: 65%;
+  top: 0%;
+  left: 60%;
+
 }
 
 .like{
@@ -90,6 +122,7 @@ background-color: rgb(19, 42, 235);
 }
 
 .btn-circle.btn-lg {
+
   width: 60px;
   height: 60px;
   padding: 10px 16px;
@@ -99,6 +132,7 @@ background-color: rgb(19, 42, 235);
 }
 
 .btn-circle.btn-xl {
+
   width: 100px;
   height: 100px;
   padding: 10px 16px;

@@ -32,11 +32,11 @@ class Meme(models.Model):
 class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
-    avater = models.ImageField(upload_to='avatar')
-    fb_link = models.URLField()
+    avater = models.ImageField(upload_to='avatar', default='/avatar/default.jpg')
+    fb_link = models.URLField(default = 'Https://facebook.com')
     seenMemes = models.ManyToManyField('Meme')
     likes = models.ManyToManyField('Category', through='Like')
-    top_cat = models.ForeignKey(Category, related_name="user_most_liked", on_delete=models.DO_NOTHING)
+    top_cat = models.ForeignKey(Category, related_name="user_most_liked", default=1, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.user.username
