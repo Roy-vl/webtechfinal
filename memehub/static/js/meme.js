@@ -1,66 +1,98 @@
 console.log("AH")
 
+function disliked() {
+  $(".stampD").css("display", "block");
+  $(".stampD").css("opacity", "1");
+
+  setTimeout(
+  function()
+  {
+  //$(".dislikebuttonhack").click();
+  location.reload();
+}, 1000);
+
+}
+
+function liked() {
+  $(".stampL").css("display", "block");
+  $(".stampL").css("opacity", "1");
+
+  setTimeout(
+  function()
+  {
+  //$(".dislikebuttonhack").click();
+  location.reload();
+}, 1000);
+
+}
+
 $(function() {
 
-    $( "#draggable2" ).draggable({ revert: "invalid" });
+    $( "#draggable2" ).draggable({ revert: "invalid"}, {scroll: false});
 
     $( "#droppable" ).droppable({
-      activeClass: "ui-state-default",
-      hoverClass: "ui-state-hover",
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
-      }
-    });
 
-    $( "#droppable2" ).droppable({
-      activeClass: "green",
-      hoverClass: "ui-state-hover",
       drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
-      }
-    });
-
-    $( "#droppablemob" ).droppable({
-      activeClass: "green",
-      hoverClass: "ui-state-hover",
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
-      },
-      over: function(event, ui) {
-        $(".btn-success").children().addClass("fa-spin");
-        console.log("PLS");
-      },
-      out: function(event, ui) {
-        $(".btn-success").children().removeClass("fa-spin");
-      }
-    });
-
-    $( "#droppablemob2" ).droppable({
-      activeClass: "green",
-      hoverClass: "ui-state-hover",
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
+        console.log("AAAAHPANEIEK")
+        disliked();
       },
       over: function(event, ui) {
         $(".btn-danger").children().addClass("fa-spin");
-        $(".btn-danger").toggle("explode", {pieces: 100}, 10000);
+        $(".memepage").css("background-color", "rgb(161, 9, 9)");
         console.log("PLS");
       },
       out: function(event, ui) {
         $(".btn-danger").children().removeClass("fa-spin");
-        $(".btn-danger").toggle("explode", {pieces: 100}, 10000);
+        $(".memepage").css("background-color", "rgb(255, 255, 255)");
+      }
+    });
+
+    $( "#droppable2" ).droppable({
+
+      drop: function( event, ui ) {
+        liked();
+      },
+      over: function(event, ui) {
+        $(".btn-success").children().addClass("fa-spin");
+        $(".memepage").css("background-color", "rgb(76, 251, 5)");
+        console.log("PLS");
+      },
+      out: function(event, ui) {
+        $(".btn-success").children().removeClass("fa-spin");
+        $(".memepage").css("background-color", "rgb(255, 255, 255)");
+      }
+    });
+
+    $( "#droppablemob" ).droppable({
+
+
+      drop: function( event, ui ) {
+        liked();
+      },
+      over: function(event, ui) {
+        $(".btn-success").children().addClass("fa-spin");
+        $(".memepage").css("background-color", "rgb(76, 251, 5)");
+        console.log("PLS");
+      },
+      out: function(event, ui) {
+        $(".btn-success").children().removeClass("fa-spin");
+        $(".memepage").css("background-color", "rgb(255, 255, 255)");
+      }
+    });
+
+    $( "#droppablemob2" ).droppable({
+
+      drop: function( event, ui ) {
+        disliked();
+      },
+      over: function(event, ui) {
+        $(".btn-danger").children().addClass("fa-spin");
+        $(".memepage").css("background-color", "rgb(161, 9, 9)");
+        console.log("PLS");
+      },
+      out: function(event, ui) {
+        $(".btn-danger").children().removeClass("fa-spin");
+        $(".memepage").css("background-color", "rgb(255, 255, 255)");
       }
     });
   });
