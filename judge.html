@@ -1,0 +1,46 @@
+{% extends 'memehub/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<body class="memepage">
+    <div class="row">
+		<div class="col-4 d-none d-lg-block status" id="droppable"></div>
+		<div class="col-12 col-lg-4 paul">
+			<div class="container-fluid memeframe">
+				<img class="memecontent" id="draggable2" src="{{ meme.image.url }}">
+				<div class="container-fluid mobilestatusdislike d-block d-lg-none" id="droppablemob"></div>
+				<div class="container-fluid memeframebuttons">
+					</br>
+					<button type="button" onclick="disliked()" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-times fa-2x"></i></i></button>
+					<button type="button" onclick="mehed()" class="btn btn-info btn-circle btn-lg"><i class="icon-meh fa-2x"></i></button>
+					<button type="button" onclick="liked()" class="btn btn-success btn-circle btn-xl"><i class="fa fa-heart fa-2x"></i></button>
+				</div>
+				<div class="container-fluid mobilestatuslike d-block d-lg-none" id="droppablemob2"></div>
+				<img class="stampD" src="{% static 'images/Disliked.png' %}">
+				<img class="stampL" src="{% static 'images/Liked.png' %}">
+			</div>
+		</div>
+		<div class="col-4 d-none d-lg-block status" id="droppable2"></div>
+	</div>
+    <form class="hide" action="dislike/{{ meme.pk }}/">
+        <button type="submit" class="dislikebuttonhack">
+    </form>
+	<form class="hide" action="meh/{{ meme.pk }}/">
+        <button type="submit" class="mehbuttonhack">
+    </form>
+	<form class="hide" action="like/{{ meme.pk }}/">
+        <button type="submit" class="likebuttonhack">
+    </form>
+
+	<!-- judge scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+ 
+	
+	<script src="https://use.fontawesome.com/69fa898c4a.js"></script>
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'jquery-ui-1.12.1.custom/external/jquery/jquery.js' %}"></script>
+    <script src="{% static 'jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/meme.js' %}"></script>
+
+{% endblock %}
