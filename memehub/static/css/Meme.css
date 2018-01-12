@@ -46,7 +46,7 @@
     .stampD{
       display: none;
       position: fixed;
-      top: 40%;
+      top: 35%;
       left: 50%;
       /* bring your own prefixes */
       transform: translate(-50%, -50%);
@@ -60,7 +60,7 @@
     .stampL{
       display: none;
       position: fixed;
-      top: 40%;
+      top: 35%;
       left: 50%;
       /* bring your own prefixes */
       transform: translate(-50%, -50%);
@@ -81,7 +81,7 @@
   .stampD{
     display: none;
     position: fixed;
-    top: 40%;
+    top: 30%;
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
@@ -95,7 +95,7 @@
   .stampL{
     display: none;
     position: fixed;
-    top: 40%;
+    top: 30%;
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
