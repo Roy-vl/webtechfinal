@@ -1,29 +1,29 @@
 console.log("AH")
 
 function disliked() {
-	$(".stampD").css("display", "block");
-	$(".stampD").css("opacity", "1");
+  $(".stampD").css("display", "block");
+  $(".stampD").css("opacity", "1");
 
-	setTimeout(
-	function()
-	{
-	$(".dislikebuttonhack").click();
-	}, 1000);
-}
+  setTimeout(
+  function()
+  {
+  //$(".dislikebuttonhack").click();
+  location.reload();
+}, 1000);
 
-function mehed() {
-	$(".mehbuttonhack").click();
 }
 
 function liked() {
-	$(".stampL").css("display", "block");
-	$(".stampL").css("opacity", "1");
+  $(".stampL").css("display", "block");
+  $(".stampL").css("opacity", "1");
 
-	setTimeout(
-	function()
-	{
-	$(".likebuttonhack").click();
-	}, 1000);
+  setTimeout(
+  function()
+  {
+  //$(".dislikebuttonhack").click();
+  location.reload();
+}, 1000);
+
 }
 
 $(function() {
@@ -34,11 +34,11 @@ $(function() {
 
       drop: function( event, ui ) {
         console.log("AAAAHPANEIEK")
-        location.reload();
+        disliked();
       },
       over: function(event, ui) {
         $(".btn-danger").children().addClass("fa-spin");
-        $(".memepage").css("background-color", "rgb(251, 5, 5)");
+        $(".memepage").css("background-color", "rgb(161, 9, 9)");
         console.log("PLS");
       },
       out: function(event, ui) {
@@ -50,7 +50,7 @@ $(function() {
     $( "#droppable2" ).droppable({
 
       drop: function( event, ui ) {
-        location.reload();
+        liked();
       },
       over: function(event, ui) {
         $(".btn-success").children().addClass("fa-spin");
@@ -67,7 +67,7 @@ $(function() {
 
 
       drop: function( event, ui ) {
-        location.reload();
+        liked();
       },
       over: function(event, ui) {
         $(".btn-success").children().addClass("fa-spin");
@@ -83,11 +83,11 @@ $(function() {
     $( "#droppablemob2" ).droppable({
 
       drop: function( event, ui ) {
-        location.reload();
+        disliked();
       },
       over: function(event, ui) {
         $(".btn-danger").children().addClass("fa-spin");
-        $(".memepage").css("background-color", "rgb(251, 5, 5)");
+        $(".memepage").css("background-color", "rgb(161, 9, 9)");
         console.log("PLS");
       },
       out: function(event, ui) {
