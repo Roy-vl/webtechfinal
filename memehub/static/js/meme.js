@@ -7,8 +7,7 @@ function disliked() {
   setTimeout(
   function()
   {
-  //$(".dislikebuttonhack").click();
-  location.reload();
+  $(".dislikebuttonhack").click();
 }, 1000);
 
 }
@@ -20,10 +19,13 @@ function liked() {
   setTimeout(
   function()
   {
-  //$(".dislikebuttonhack").click();
-  location.reload();
+  $(".likebuttonhack").click();
 }, 1000);
 
+}
+
+function meh() {
+  $(".mehbuttonhack").click();
 }
 
 $(function() {
