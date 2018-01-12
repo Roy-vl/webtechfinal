@@ -36,7 +36,8 @@ def register(request):
 
 @login_required
 @transaction.atomic
-def update_profile(request):
+def update_profile(request, pk):
+    user1 = get_object_or_404(Profile, pk=pk)
     if request.method == 'POST':
         profile_form = ProfileForm(data=request.POST, files=request.FILES, instance=request.user.profile)
         if profile_form.is_valid():
@@ -44,9 +45,7 @@ def update_profile(request):
             return redirect('profile')
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'memehub/profile.html', {
-        'profile_form': profile_form
-    })
+    return render(request, 'memehub/profile.html', {'profile_form': profile_form, 'user1': user1})
 
 @login_required(login_url='register/login/')
 def judge(request):
@@ -165,4 +164,3 @@ def matches(request):
     if potentials is 0:
         return render(request, 'memehub/nomatches.html')
     return render(request, 'memehub/matches.html', { 'matches': potentials })
-

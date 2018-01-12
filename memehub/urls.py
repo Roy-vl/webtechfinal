@@ -12,6 +12,5 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^judge/like/(?P<pk>\d+)/$', views.like, name='like'),
     url(r'^dislike/(?P<pk>\d+)/$', views.dislike, name='dislike'),
-    url(r'^accounts/profile$', views.update_profile, name='profile'),
+    url(r'^accounts/profile/(?P<pk>\d+)/$', views.update_profile, name='profile'),
 ]
-
