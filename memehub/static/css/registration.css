@@ -1,0 +1,140 @@
+* {
+      background-color: #1b1b1b;
+      color: #FF9900;
+      font-family: arial;
+      font-weight: bold !important;
+}
+
+body{
+    background-color: #000000 !important ;
+    font-family: sans-serif;
+}
+
+button {
+background: none !important;
+ border: none;
+ border-radius: 20px;
+ padding: 2px ;
+ font: inherit;
+ cursor: pointer;
+ outline: inherit !important;
+ margin: 5px;
+}
+
+button:hover {
+  color: white !important;
+  background-color: #242424;
+  padding: 5px;
+}
+
+h1 {
+  color: white;
+  padding: 1;
+  background-color: #242424 !important;
+  font-size: 40;
+  font-weight: 700;
+  border: 5px solid #242424;
+  text-align: left;
+  font-size: 40;
+  font-weight: 700;
+}
+
+img {
+  max-width: 200px;
+  max-height: 400px;
+}
+li{
+  background-color: inherit;
+}
+
+ul{
+  border: 5px solid #242424;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #343A40 !important;
+  font-size: 40;
+  font-weight: 700;
+  width: auto;
+  display: inline-block;
+}
+
+
+@keyframes example {
+  0%  {left: -12px; }
+  50%  {left: 0px;}
+  100%  {left: 12px;}
+}
+.avatar {
+  position: relative;
+  display: inline-block;
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  background-color:  #343A40 !important;
+
+}
+
+.fa-facebook{
+  font-size: 30 !important;
+
+    color: white;
+}
+.fbbutton{
+  border: 2px solid #4267B2 !important;
+  padding: 10px;
+  border-radius: 5px;
+    background-color: #4267B2 !important;
+}
+.fbbutton:hover{
+ padding: 10px;
+ background-color: white !important;;
+ color:#4267B2 !important;
+}
+.info {
+  color: white;
+  background-color: #242424;
+  border-bottom: 5px solid #343a40;
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+.profile {
+  padding: 1;
+  background-color: #343A40 !important;
+  padding-bottom: px;
+  margin: 5px;
+  margin-top: 10px;
+}
+
+.profileheader{
+  padding: 1;
+  background-color: inherit !important;
+  font-size: 40;
+  font-weight: 700;
+  border-bottom: 5px solid #242424;
+  padding-bottom: 5px;
+}
+
+.profilelist{
+  border: 5px solid #242424;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #343A40 !important;
+  font-size: 40;
+  font-weight: 700;
+  width: auto;
+  display: inline-block;
+}
+
+.sign {
+  background-color: #ff9900 !important;
+  color: black ;
+}
+
+.title{
+  color: white;
+}
+#sortable{
+    background-color: #1b1b1b !important;
+}
