@@ -15,7 +15,7 @@
 <form method="post">
   <div class = 'profileheader'>
     {% csrf_token %}
-    <p class = 'form'>  Username:  </p>
+    <p class = 'form'>    <span class="form"><i class="fa fa-user" aria-hidden="true"> </i> Username </span>  </p>
     <p>{{form.username}}</p>
     <div class = 'registerinfo'>
       <ul>
@@ -23,7 +23,7 @@
         <li> Only use digits, letters or @/./+/-/_ </li>
       </ul>
     </div>
-    <p class = 'form'>  Password:  </p>
+    <p class = 'form'>  <span class="form"><i class="fa fa-lock" aria-hidden="true"> </i> Password </span>   </p>
     <p>{{form.password1}}</p>
     <div class = 'registerinfo'>
       <ul>
